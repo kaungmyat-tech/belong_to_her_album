@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seller SLA Terms &amp; Compensation</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #F8FAFB;
+        overflow: hidden;
+    }
+    .header {
+        padding: 32px 60px 16px 60px;
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #4A90C8;
+    }
+    .title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        padding: 20px 60px;
+        gap: 20px;
+    }
+    .left-section {
+        width: 360px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .right-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .obligations-card {
+        background-color: #FFFFFF;
+        padding: 16px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        border-top: 3px solid #4A90C8;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #E6F2F9;
+    }
+    .obligation-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 8px;
+        padding: 6px;
+        border-radius: 6px;
+        background-color: #F8FAFB;
+    }
+    .obligation-item:last-child {
+        margin-bottom: 0;
+    }
+    .check-icon {
+        width: 18px;
+        height: 18px;
+        background-color: #4A90C8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    .check-icon i {
+        color: #FFFFFF;
+        font-size: 10px;
+    }
+    .obligation-text {
+        flex: 1;
+        font-size: 11px;
+        color: #2D3748;
+        line-height: 1.4;
+        font-weight: 500;
+    }
+    .tier-pyramid-container {
+        background-color: #FFFFFF;
+        padding: 18px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    .pyramid-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .pyramid {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+    }
+    .tier-row {
+        display: flex;
+        justify-content: center;
+    }
+    .tier-card {
+        padding: 12px 20px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    }
+    .tier-card.gold {
+        width: 75%;
+        background-color: #0F2940;
+        border: 3px solid #FFD700;
+    }
+    .tier-card.silver {
+        width: 85%;
+        background-color: #2C5F7C;
+        border: 3px solid #C0C0C0;
+    }
+    .tier-card.bronze {
+        width: 95%;
+        background-color: #4A90C8;
+        border: 3px solid #CD7F32;
+    }
+    .tier-badge {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .tier-card.gold .tier-badge {
+        background-color: #FFD700;
+        color: #0F2940;
+    }
+    .tier-card.silver .tier-badge {
+        background-color: #C0C0C0;
+        color: #2C5F7C;
+    }
+    .tier-card.bronze .tier-badge {
+        background-color: #CD7F32;
+        color: #FFFFFF;
+    }
+    .tier-name {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .tier-rate {
+        font-size: 16px;
+        font-weight: 800;
+    }
+    .tier-details {
+        flex: 1;
+    }
+    .tier-range {
+        font-size: 12px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 4px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .tier-benefits {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .benefit-tag {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #FFFFFF;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 9px;
+        font-weight: 600;
+    }
+    .incentives-section {
+        display: flex;
+        gap: 10px;
+    }
+    .incentive-card {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 12px 14px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border-left: 4px solid #1B7A3E;
+    }
+    .incentive-card.negative {
+        border-left-color: #C53030;
+    }
+    .incentive-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .incentive-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .incentive-card .incentive-icon {
+        background-color: #F0F9F4;
+    }
+    .incentive-card.negative .incentive-icon {
+        background-color: #FFF5F5;
+    }
+    .incentive-icon i {
+        font-size: 13px;
+        color: #1B7A3E;
+    }
+    .incentive-card.negative .incentive-icon i {
+        color: #C53030;
+    }
+    .incentive-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .incentive-items {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .incentive-item {
+        font-size: 10px;
+        color: #2D3748;
+        line-height: 1.4;
+        padding-left: 8px;
+        position: relative;
+    }
+    .incentive-item::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: #4A90C8;
+        font-weight: 700;
+    }
+    .performance-targets {
+        background-color: #FFFFFF;
+        padding: 16px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        border-top: 3px solid #4A90C8;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .target-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        padding: 6px;
+        border-radius: 6px;
+        background-color: #F8FAFB;
+    }
+    .target-item:last-child {
+        margin-bottom: 0;
+    }
+    .target-icon {
+        width: 32px;
+        height: 32px;
+        background-color: #E6F2F9;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .target-icon i {
+        color: #2C5F7C;
+        font-size: 14px;
+    }
+    .target-content {
+        flex: 1;
+    }
+    .target-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #2C5F7C;
+        margin-bottom: 2px;
+    }
+    .target-value {
+        font-size: 10px;
+        color: #5A6C7D;
+        line-height: 1.3;
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<p class="title">Seller SLA Terms &amp; Compensation</p>
+</div>
+<div class="content-wrapper">
+<div class="left-section">
+<div class="obligations-card">
+<p class="card-title">Core Obligations</p>
+<div class="obligation-item">
+<div class="check-icon">
+<i class="fas fa-certificate"></i>
+</div>
+<p class="obligation-text"><strong>100% Authenticity:</strong> All products with documentation; authorized dealer certificates, purchase invoices, import docs</p>
+</div>
+<div class="obligation-item">
+<div class="check-icon">
+<i class="fas fa-clock"></i>
+</div>
+<p class="obligation-text"><strong>Order Processing:</strong> Confirm orders &lt;24h; dispatch &lt;48h with KHIT ZAY branded packaging</p>
+</div>
+<div class="obligation-item">
+<div class="check-icon">
+<i class="fas fa-boxes"></i>
+</div>
+<p class="obligation-text"><strong>Inventory Management:</strong> Real-time sync; immediate deactivation when unavailable; maintain buffer stock</p>
+</div>
+<div class="obligation-item">
+<div class="check-icon">
+<i class="fas fa-headset"></i>
+</div>
+<p class="obligation-text"><strong>Customer Service:</strong> Response &lt;4h during business hours (9am-6pm, 7 days/week)</p>
+</div>
+<div class="obligation-item">
+<div class="check-icon">
+<i class="fas fa-undo"></i>
+</div>
+<p class="obligation-text"><strong>Returns Policy:</strong> Approve/reject &lt;24h; inspection &lt;48h; refund &lt;3 business days</p>
+</div>
+</div>
+<div class="performance-targets">
+<p class="card-title">Performance Targets</p>
+<div class="target-item">
+<div class="target-icon">
+<i class="fas fa-check-circle"></i>
+</div>
+<div class="target-content">
+<p class="target-label">Order Fulfillment: ≥98%</p>
+<p class="target-value">Review if &lt;95% for 2 consecutive months</p>
+</div>
+</div>
+<div class="target-item">
+<div class="target-icon">
+<i class="fas fa-star"></i>
+</div>
+<div class="target-content">
+<p class="target-label">Customer Satisfaction: ≥4.5/5</p>
+<p class="target-value">Improvement plan if &lt;4.0 for 3 months</p>
+</div>
+</div>
+<div class="target-item">
+<div class="target-icon">
+<i class="fas fa-exchange-alt"></i>
+</div>
+<div class="target-content">
+<p class="target-label">Return Rate: &lt;5%</p>
+<p class="target-value">Quality investigation if &gt;8%</p>
+</div>
+</div>
+</div>
+</div>
+<div class="right-section">
+<div class="tier-pyramid-container">
+<p class="pyramid-title">Performance-Based Tier System &amp; Benefits</p>
+<div class="pyramid">
+<div class="tier-row">
+<div class="tier-card gold">
+<div class="tier-badge">
+<p class="tier-name">GOLD</p>
+<p class="tier-rate">8%</p>
+</div>
+<div class="tier-details">
+<p class="tier-range">151+ orders/month</p>
+<div class="tier-benefits">
+<div class="benefit-tag">
+<p>Account Manager</p>
+</div>
+<div class="benefit-tag">
+<p>2 Featured/mo</p>
+</div>
+<div class="benefit-tag">
+<p>Campaign Priority</p>
+</div>
+<div class="benefit-tag">
+<p>Beta Features</p>
+</div>
+<div class="benefit-tag">
+<p>Networking Events</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tier-row">
+<div class="tier-card silver">
+<div class="tier-badge">
+<p class="tier-name">SILVER</p>
+<p class="tier-rate">10%</p>
+</div>
+<div class="tier-details">
+<p class="tier-range">51-150 orders/month</p>
+<div class="tier-benefits">
+<div class="benefit-tag">
+<p>Priority Support</p>
+</div>
+<div class="benefit-tag">
+<p>1 Featured/mo</p>
+</div>
+<div class="benefit-tag">
+<p>Advanced Analytics</p>
+</div>
+<div class="benefit-tag">
+<p>Promo Participation</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tier-row">
+<div class="tier-card bronze">
+<div class="tier-badge">
+<p class="tier-name">BRONZE</p>
+<p class="tier-rate">12%</p>
+</div>
+<div class="tier-details">
+<p class="tier-range">0-50 orders/month</p>
+<div class="tier-benefits">
+<div class="benefit-tag">
+<p>Standard Support</p>
+</div>
+<div class="benefit-tag">
+<p>Basic Dashboard</p>
+</div>
+<div class="benefit-tag">
+<p>No Featured Placement</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="incentives-section">
+<div class="incentive-card">
+<div class="incentive-header">
+<div class="incentive-icon">
+<i class="fas fa-trophy"></i>
+</div>
+<p class="incentive-title">Performance Incentives</p>
+</div>
+<div class="incentive-items">
+<p class="incentive-item">+20% above target: -2% commission next month</p>
+<p class="incentive-item">+50% above target: -3% commission + MMK 150K cash bonus</p>
+<p class="incentive-item">+100% above target: -4% commission + MMK 450K bonus + homepage feature</p>
+</div>
+</div>
+<div class="incentive-card negative">
+<div class="incentive-header">
+<div class="incentive-icon">
+<i class="fas fa-exclamation-triangle"></i>
+</div>
+<p class="incentive-title">Underperformance Consequences</p>
+</div>
+<div class="incentive-items">
+<p class="incentive-item">30-50% below target (2 months): Warning + improvement plan</p>
+<p class="incentive-item">&gt;50% below target: +2% commission until recovery</p>
+<p class="incentive-item">3 consecutive months below: Account review/suspension</p>
+</div>
+</div>
+<div class="incentive-card negative">
+<div class="incentive-header">
+<div class="incentive-icon">
+<i class="fas fa-box-open"></i>
+</div>
+<p class="incentive-title">Stock-Out Penalties</p>
+</div>
+<div class="incentive-items">
+<p class="incentive-item">1st incident/month: Warning + inventory review</p>
+<p class="incentive-item">2nd incident: MMK 15K penalty per unfulfilled order</p>
+<p class="incentive-item">3+ incidents: MMK 30K penalty + temp suspension</p>
+<p class="incentive-item">Customer compensation: Refund + MMK 7.5K credit (seller pays)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

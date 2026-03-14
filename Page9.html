@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Implementation Roadmap &amp; Risk Mitigation</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #F8FAFB;
+        overflow: hidden;
+    }
+    .header {
+        padding: 32px 60px 16px 60px;
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #4A90C8;
+    }
+    .title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 60px 24px 60px;
+        gap: 14px;
+    }
+    .success-factors {
+        display: flex;
+        gap: 12px;
+    }
+    .factor-card {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 12px 14px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border-left: 4px solid #1B7A3E;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .factor-icon {
+        width: 36px;
+        height: 36px;
+        background-color: #F0F9F4;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .factor-icon i {
+        color: #1B7A3E;
+        font-size: 16px;
+    }
+    .factor-text {
+        flex: 1;
+    }
+    .factor-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: #1B7A3E;
+        margin-bottom: 3px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .factor-desc {
+        font-size: 10px;
+        color: #2D3748;
+        line-height: 1.3;
+    }
+    .timeline-section {
+        background-color: #FFFFFF;
+        padding: 16px 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+    }
+    .section-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #4A90C8;
+    }
+    .timeline-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        padding: 10px 0;
+    }
+    .timeline-line {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        right: 5%;
+        height: 3px;
+        background-color: #E2E8F0;
+        z-index: 0;
+    }
+    .phase-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+    .phase-node {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        border: 4px solid #FFFFFF;
+    }
+    .phase-item.phase-1 .phase-node {
+        background-color: #8FB5D0;
+    }
+    .phase-item.phase-2 .phase-node {
+        background-color: #4A90C8;
+    }
+    .phase-item.phase-3 .phase-node {
+        background-color: #2C5F7C;
+    }
+    .phase-item.phase-4 .phase-node {
+        background-color: #0F2940;
+    }
+    .phase-node i {
+        color: #FFFFFF;
+        font-size: 20px;
+    }
+    .phase-badge {
+        background-color: #0F2940;
+        color: #FFFFFF;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 4px;
+    }
+    .phase-name {
+        font-size: 11px;
+        font-weight: 700;
+        color: #0F2940;
+        text-align: center;
+        margin-bottom: 4px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .phase-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-items: center;
+    }
+    .phase-detail-item {
+        font-size: 9px;
+        color: #5A6C7D;
+        background-color: #F8FAFB;
+        padding: 2px 8px;
+        border-radius: 3px;
+        white-space: nowrap;
+    }
+    .risk-section {
+        display: flex;
+        gap: 12px;
+        flex: 1;
+    }
+    .risk-card {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 14px 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+    }
+    .risk-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #FEB2B2;
+    }
+    .risk-icon {
+        width: 32px;
+        height: 32px;
+        background-color: #FFF5F5;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .risk-icon i {
+        color: #C53030;
+        font-size: 14px;
+    }
+    .risk-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #C53030;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .mitigation-label {
+        font-size: 10px;
+        font-weight: 700;
+        color: #2C5F7C;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .mitigation-items {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .mitigation-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 5px;
+        border-radius: 4px;
+        background-color: #F0F9F4;
+    }
+    .mitigation-check {
+        width: 14px;
+        height: 14px;
+        background-color: #1B7A3E;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+    .mitigation-check i {
+        color: #FFFFFF;
+        font-size: 8px;
+    }
+    .mitigation-text {
+        flex: 1;
+        font-size: 10px;
+        color: #2D3748;
+        line-height: 1.4;
+    }
+    .gate-indicator {
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #FFF5F5;
+        color: #C53030;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 8px;
+        font-weight: 700;
+        white-space: nowrap;
+        border: 1px solid #FEB2B2;
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<p class="title">Implementation Roadmap &amp; Risk Mitigation</p>
+</div>
+<div class="content-wrapper">
+<div class="success-factors">
+<div class="factor-card">
+<div class="factor-icon">
+<i class="fas fa-award"></i>
+</div>
+<div class="factor-text">
+<p class="factor-title">Quality-First Onboarding</p>
+<p class="factor-desc">Rigorous vetting, pilot probation, continuous monitoring</p>
+</div>
+</div>
+<div class="factor-card">
+<div class="factor-icon">
+<i class="fas fa-network-wired"></i>
+</div>
+<div class="factor-text">
+<p class="factor-title">Leverage Blazon Infrastructure</p>
+<p class="factor-desc">30-year reputation, logistics network, customer service</p>
+</div>
+</div>
+<div class="factor-card">
+<div class="factor-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+<div class="factor-text">
+<p class="factor-title">Data-Driven Phased Scaling</p>
+<p class="factor-desc">Stage-gated approach with clear success metrics</p>
+</div>
+</div>
+</div>
+<div class="timeline-section">
+<p class="section-title">12-Month Implementation Timeline with Stage Gates</p>
+<div class="timeline-container">
+<div class="timeline-line"></div>
+<div class="phase-item phase-1">
+<div class="phase-node">
+<i class="fas fa-wrench"></i>
+</div>
+<div class="phase-badge">
+<p>M1-2</p>
+</div>
+<p class="phase-name">Foundation</p>
+<div class="phase-details">
+<div class="phase-detail-item">
+<p>Infrastructure Build</p>
+</div>
+<div class="phase-detail-item">
+<p>Legal Framework</p>
+</div>
+<div class="phase-detail-item">
+<p>Seller Pipeline</p>
+</div>
+</div>
+<div class="gate-indicator">
+<p>GO/NO-GO</p>
+</div>
+</div>
+<div class="phase-item phase-2">
+<div class="phase-node">
+<i class="fas fa-flask"></i>
+</div>
+<div class="phase-badge">
+<p>M3-4</p>
+</div>
+<p class="phase-name">Pilot Program</p>
+<div class="phase-details">
+<div class="phase-detail-item">
+<p>10-15 Sellers</p>
+</div>
+<div class="phase-detail-item">
+<p>150-300 Orders/mo</p>
+</div>
+<div class="phase-detail-item">
+<p>8% Commission</p>
+</div>
+</div>
+<div class="gate-indicator">
+<p>GO/NO-GO</p>
+</div>
+</div>
+<div class="phase-item phase-3">
+<div class="phase-node">
+<i class="fas fa-rocket"></i>
+</div>
+<div class="phase-badge">
+<p>M5-7</p>
+</div>
+<p class="phase-name">Growth</p>
+<div class="phase-details">
+<div class="phase-detail-item">
+<p>30-50 Sellers</p>
+</div>
+<div class="phase-detail-item">
+<p>800-1,500 Orders/mo</p>
+</div>
+<div class="phase-detail-item">
+<p>Performance Tiers</p>
+</div>
+</div>
+<div class="gate-indicator">
+<p>GO/NO-GO</p>
+</div>
+</div>
+<div class="phase-item phase-4">
+<div class="phase-node">
+<i class="fas fa-flag-checkered"></i>
+</div>
+<div class="phase-badge">
+<p>M8-12</p>
+</div>
+<p class="phase-name">Full Launch</p>
+<div class="phase-details">
+<div class="phase-detail-item">
+<p>60-80 Sellers</p>
+</div>
+<div class="phase-detail-item">
+<p>2,500-4,000 Orders/mo</p>
+</div>
+<div class="phase-detail-item">
+<p>Profitability</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="risk-section">
+<div class="risk-card">
+<div class="risk-header">
+<div class="risk-icon">
+<i class="fas fa-user-shield"></i>
+</div>
+<p class="risk-title">Seller Quality Risks</p>
+</div>
+<p class="mitigation-label">Mitigation Strategies:</p>
+<div class="mitigation-items">
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Comprehensive background checks and business verification</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Pilot programs to test sellers before full integration</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Continuous performance monitoring with automated alerts</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Performance reserves to cover refunds and service issues</p>
+</div>
+</div>
+</div>
+<div class="risk-card">
+<div class="risk-header">
+<div class="risk-icon">
+<i class="fas fa-cogs"></i>
+</div>
+<p class="risk-title">Operational Risks</p>
+</div>
+<p class="mitigation-label">Mitigation Strategies:</p>
+<div class="mitigation-items">
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Multiple delivery partners to avoid single-point failures</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Robust tech infrastructure with 99.9% uptime guarantees</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Redundancy in customer service and technical support teams</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Comprehensive BCP and crisis management protocols</p>
+</div>
+</div>
+</div>
+<div class="risk-card">
+<div class="risk-header">
+<div class="risk-icon">
+<i class="fas fa-dollar-sign"></i>
+</div>
+<p class="risk-title">Financial Risks</p>
+</div>
+<p class="mitigation-label">Mitigation Strategies:</p>
+<div class="mitigation-items">
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Phased investment with clear decision checkpoints</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Conservative projections with buffers for unexpected costs</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">Revenue diversification beyond commissions (ads, features)</p>
+</div>
+<div class="mitigation-item">
+<div class="mitigation-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="mitigation-text">6-month cash reserves for operational continuity</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Success Metrics &amp; Conclusion</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #F8FAFB;
+        overflow: hidden;
+    }
+    .header {
+        padding: 32px 60px 16px 60px;
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #4A90C8;
+    }
+    .title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 60px 20px 60px;
+        gap: 12px;
+    }
+    .kpi-section {
+        display: flex;
+        gap: 12px;
+    }
+    .kpi-category {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 12px 14px;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        border-top: 3px solid #4A90C8;
+        display: flex;
+        flex-direction: column;
+    }
+    .category-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #E6F2F9;
+    }
+    .category-icon {
+        width: 28px;
+        height: 28px;
+        background-color: #E6F2F9;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .category-icon i {
+        color: #2C5F7C;
+        font-size: 12px;
+    }
+    .category-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .kpi-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
+    }
+    .kpi-card {
+        background-color: #F8FAFB;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border-left: 3px solid #4A90C8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .kpi-label {
+        font-size: 11px;
+        color: #5A6C7D;
+        font-weight: 600;
+    }
+    .kpi-value {
+        font-size: 14px;
+        font-weight: 800;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .takeaways-section {
+        background-color: #FFFFFF;
+        padding: 14px 18px;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        border-left: 5px solid #1B7A3E;
+        display: flex;
+        gap: 14px;
+    }
+    .takeaway-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .takeaway-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1B7A3E;
+        margin-bottom: 4px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .takeaway-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 5px;
+        border-radius: 4px;
+        background-color: #F0F9F4;
+    }
+    .takeaway-check {
+        width: 14px;
+        height: 14px;
+        background-color: #1B7A3E;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+    .takeaway-check i {
+        color: #FFFFFF;
+        font-size: 8px;
+    }
+    .takeaway-text {
+        flex: 1;
+        font-size: 10px;
+        color: #2D3748;
+        line-height: 1.4;
+    }
+    .cta-section {
+        background-color: #0F2940;
+        padding: 14px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .cta-icon-area {
+        width: 60px;
+        height: 60px;
+        background-color: #2C5F7C;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .cta-icon-area i {
+        color: #FFFFFF;
+        font-size: 26px;
+    }
+    .cta-content {
+        flex: 1;
+    }
+    .cta-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 6px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .action-tag {
+        background-color: #4A90C8;
+        color: #FFFFFF;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .action-tag i {
+        font-size: 9px;
+    }
+    .cta-button {
+        background-color: #1B7A3E;
+        color: #FFFFFF;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+    .cta-button i {
+        font-size: 12px;
+    }
+    .year-label {
+        display: inline-block;
+        background-color: #E6F2F9;
+        color: #2C5F7C;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 9px;
+        font-weight: 700;
+        margin-left: 4px;
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<p class="title">Success Metrics &amp; Conclusion</p>
+</div>
+<div class="content-wrapper">
+<div class="kpi-section">
+<div class="kpi-category">
+<div class="category-header">
+<div class="category-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+<p class="category-title">Platform KPIs <span class="year-label">YEAR 1 TARGETS</span></p>
+</div>
+<div class="kpi-cards">
+<div class="kpi-card">
+<p class="kpi-label">Gross Merchandise Value (GMV)</p>
+<p class="kpi-value">MMK 4.5-6.75B</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Total Orders Processed</p>
+<p class="kpi-value">20,000-30,000</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Average Order Value (AOV)</p>
+<p class="kpi-value">MMK 135K-150K</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Platform Commission Revenue</p>
+<p class="kpi-value">MMK 300-450M</p>
+</div>
+</div>
+</div>
+<div class="kpi-category">
+<div class="category-header">
+<div class="category-icon">
+<i class="fas fa-store"></i>
+</div>
+<p class="category-title">Seller KPIs <span class="year-label">YEAR 1 TARGETS</span></p>
+</div>
+<div class="kpi-cards">
+<div class="kpi-card">
+<p class="kpi-label">Active Sellers (by year-end)</p>
+<p class="kpi-value">60-80</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Avg Orders per Seller/Month</p>
+<p class="kpi-value">30-40</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Seller Retention Rate</p>
+<p class="kpi-value">≥85%</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Seller Satisfaction Score</p>
+<p class="kpi-value">≥4.0/5</p>
+</div>
+</div>
+</div>
+<div class="kpi-category">
+<div class="category-header">
+<div class="category-icon">
+<i class="fas fa-users"></i>
+</div>
+<p class="category-title">Customer KPIs <span class="year-label">YEAR 1 TARGETS</span></p>
+</div>
+<div class="kpi-cards">
+<div class="kpi-card">
+<p class="kpi-label">Customer Acquisition Cost (CAC)</p>
+<p class="kpi-value">&lt; MMK 7,500</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Customer Lifetime Value (CLV)</p>
+<p class="kpi-value">&gt; MMK 300K</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Customer Retention Rate</p>
+<p class="kpi-value">≥65%</p>
+</div>
+<div class="kpi-card">
+<p class="kpi-label">Net Promoter Score (NPS)</p>
+<p class="kpi-value">≥40</p>
+</div>
+</div>
+</div>
+</div>
+<div class="takeaways-section">
+<div class="takeaway-col">
+<p class="takeaway-title"><i class="fas fa-lightbulb"></i> Key Strategic Takeaways</p>
+<div class="takeaway-item">
+<div class="takeaway-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="takeaway-text"><strong>Differentiated Positioning:</strong> "Complement, don't compete" strategy protects brand equity while expanding wallet share beyond 17 existing brands</p>
+</div>
+<div class="takeaway-item">
+<div class="takeaway-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="takeaway-text"><strong>De-Risked Execution:</strong> Phased rollout with stage gates ensures controlled growth, quality maintenance, and ability to pivot based on learnings</p>
+</div>
+</div>
+<div class="takeaway-col">
+<p class="takeaway-title"><i class="fas fa-money-bill-wave"></i> Financial Path to Profitability</p>
+<div class="takeaway-item">
+<div class="takeaway-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="takeaway-text"><strong>Break-Even Target:</strong> 215 orders/month achievable with disciplined seller mix and performance-based tier system</p>
+</div>
+<div class="takeaway-item">
+<div class="takeaway-check">
+<i class="fas fa-check"></i>
+</div>
+<p class="takeaway-text"><strong>Year 1 Profitability:</strong> SLA-backed operations ensure customer trust; financial sustainability achieved by Months 9-12 with net MMK 195K-1.34M/month</p>
+</div>
+</div>
+</div>
+<div class="cta-section">
+<div class="cta-icon-area">
+<i class="fas fa-calendar-check"></i>
+</div>
+<div class="cta-content">
+<p class="cta-title">Next 30 Days: Critical Decision Points</p>
+<div class="cta-actions">
+<div class="action-tag">
+<i class="fas fa-check-circle"></i>
+<p>Approve Budget &amp; Resources</p>
+</div>
+<div class="action-tag">
+<i class="fas fa-file-contract"></i>
+<p>Finalize Legal Templates &amp; SLAs</p>
+</div>
+<div class="action-tag">
+<i class="fas fa-handshake"></i>
+<p>Confirm Delivery Partner Agreements</p>
+</div>
+<div class="action-tag">
+<i class="fas fa-list-check"></i>
+<p>Build Seller Shortlist (50-100)</p>
+</div>
+<div class="action-tag">
+<i class="fas fa-puzzle-piece"></i>
+<p>Configure Multi-Vendor App</p>
+</div>
+<div class="action-tag">
+<i class="fas fa-users-cog"></i>
+<p>Schedule Pilot Onboarding</p>
+</div>
+</div>
+</div>
+<div class="cta-button">
+<i class="fas fa-rocket"></i>
+<p>GO / NO-GO DECISION</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

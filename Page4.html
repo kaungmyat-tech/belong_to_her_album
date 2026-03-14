@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Seller Qualification Framework &amp; Timeline</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 850px;
+        display: flex;
+        flex-direction: column;
+        background-color: #F8FAFB;
+        overflow: hidden;
+    }
+    .header {
+        padding: 40px 60px 20px 60px;
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #4A90C8;
+    }
+    .title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        padding: 30px 60px 40px 60px;
+        gap: 32px;
+    }
+    .left-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .right-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .section-header {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #4A90C8;
+    }
+    .checklist-group {
+        background-color: #FFFFFF;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    }
+    .group-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #2C5F7C;
+        margin-bottom: 12px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .checklist-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 10px;
+        padding: 8px;
+        border-radius: 6px;
+        background-color: #F8FAFB;
+    }
+    .checklist-item:last-child {
+        margin-bottom: 0;
+    }
+    .check-icon {
+        width: 20px;
+        height: 20px;
+        background-color: #4A90C8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    .check-icon i {
+        color: #FFFFFF;
+        font-size: 11px;
+    }
+    .checklist-text {
+        flex: 1;
+        font-size: 13px;
+        color: #2D3748;
+        line-height: 1.5;
+    }
+    .timeline-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex: 1;
+    }
+    .phase-card {
+        background-color: #FFFFFF;
+        padding: 16px 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+        border-left: 6px solid #4A90C8;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .phase-card.phase-1 {
+        border-left-color: #8FB5D0;
+    }
+    .phase-card.phase-2 {
+        border-left-color: #4A90C8;
+    }
+    .phase-card.phase-3 {
+        border-left-color: #2C5F7C;
+    }
+    .phase-card.phase-4 {
+        border-left-color: #0F2940;
+    }
+    .phase-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .phase-badge {
+        background-color: #E6F2F9;
+        color: #2C5F7C;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .phase-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+        flex: 1;
+    }
+    .phase-metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 4px;
+    }
+    .metric-tag {
+        background-color: #F8FAFB;
+        color: #5A6C7D;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+    .timeline-arrow {
+        text-align: center;
+        color: #B8D4E8;
+        font-size: 18px;
+        margin: -4px 0;
+    }
+</style>
+</head>
+<body spellcheck="false" style="" data-new-gr-c-s-check-loaded="14.1275.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1275.0">
+<div class="slide-container">
+<div class="header">
+<p class="title">Seller Qualification Framework &amp; Timeline</p>
+</div>
+<div class="content-wrapper">
+<div class="left-section">
+<p class="section-header">Qualification Requirements</p>
+<div class="checklist-group">
+<p class="group-title">Essential Requirements</p>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">Registered Myanmar business license with physical presence or warehouse in Yangon Region</p>
+</div>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">100% authentic products with proper import documentation</p>
+</div>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">Capacity to fulfill minimum 50 orders per month consistently</p>
+</div>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">Agreement to quality standards and return policies</p>
+</div>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">Product liability insurance for items over MMK 500,000</p>
+</div>
+</div>
+<div class="checklist-group">
+<p class="group-title">Quality Standards</p>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">100% authentic products with documentation available upon request</p>
+</div>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">No counterfeit, replica, or IP-infringing goods allowed</p>
+</div>
+<div class="checklist-item">
+<div class="check-icon">
+<i class="fas fa-check"></i>
+</div>
+<p class="checklist-text">All items must be new unless clearly marked as refurbished with warranties</p>
+</div>
+</div>
+</div>
+<div class="right-section">
+<p class="section-header">Phased Expansion Timeline</p>
+<div class="timeline-container">
+<div class="phase-card phase-1">
+<div class="phase-header">
+<div class="phase-badge">
+<p>M1-2</p>
+</div>
+<p class="phase-title">Phase 1: Foundation Building</p>
+</div>
+<div class="phase-metrics">
+<div class="metric-tag">
+<p>Infrastructure &amp; Legal</p>
+</div>
+<div class="metric-tag">
+<p>Onboarding Playbooks</p>
+</div>
+<div class="metric-tag">
+<p>50-100 Prospects</p>
+</div>
+</div>
+</div>
+<div class="timeline-arrow">
+<p><i class="fas fa-arrow-down"></i></p>
+</div>
+<div class="phase-card phase-2">
+<div class="phase-header">
+<div class="phase-badge">
+<p>M3-4</p>
+</div>
+<p class="phase-title">Phase 2: Pilot Program</p>
+</div>
+<div class="phase-metrics">
+<div class="metric-tag">
+<p>10-15 Sellers</p>
+</div>
+<div class="metric-tag">
+<p>200-500 SKUs</p>
+</div>
+<div class="metric-tag">
+<p>150-300 Orders/mo</p>
+</div>
+<div class="metric-tag">
+<p>95%+ Fulfillment</p>
+</div>
+<div class="metric-tag">
+<p>CSAT 4.3+</p>
+</div>
+</div>
+</div>
+<div class="timeline-arrow">
+<p><i class="fas fa-arrow-down"></i></p>
+</div>
+<div class="phase-card phase-3">
+<div class="phase-header">
+<div class="phase-badge">
+<p>M5-7</p>
+</div>
+<p class="phase-title">Phase 3: Controlled Expansion</p>
+</div>
+<div class="phase-metrics">
+<div class="metric-tag">
+<p>30-50 Sellers</p>
+</div>
+<div class="metric-tag">
+<p>1,500-3,000 SKUs</p>
+</div>
+<div class="metric-tag">
+<p>800-1,500 Orders/mo</p>
+</div>
+<div class="metric-tag">
+<p>96%+ Fulfillment</p>
+</div>
+<div class="metric-tag">
+<p>CSAT 4.4+</p>
+</div>
+</div>
+</div>
+<div class="timeline-arrow">
+<p><i class="fas fa-arrow-down"></i></p>
+</div>
+<div class="phase-card phase-4">
+<div class="phase-header">
+<div class="phase-badge">
+<p>M8-12</p>
+</div>
+<p class="phase-title">Phase 4: Full-Scale Launch</p>
+</div>
+<div class="phase-metrics">
+<div class="metric-tag">
+<p>60-80 Sellers</p>
+</div>
+<div class="metric-tag">
+<p>4,000-6,000 SKUs</p>
+</div>
+<div class="metric-tag">
+<p>2,500-4,000 Orders/mo</p>
+</div>
+<div class="metric-tag">
+<p>97%+ Fulfillment</p>
+</div>
+<div class="metric-tag">
+<p>CSAT 4.5+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

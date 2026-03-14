@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Financial Analysis &amp; Profitability Model</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 970px;
+        display: flex;
+        flex-direction: column;
+        background-color: #F8FAFB;
+        overflow: hidden;
+    }
+    .header {
+        padding: 32px 60px 16px 60px;
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #4A90C8;
+    }
+    .title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 60px;
+        gap: 16px;
+        overflow: hidden;
+    }
+    .top-section {
+        display: flex;
+        gap: 16px;
+    }
+    .cost-card {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border-top: 3px solid #4A90C8;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #E2E8F0;
+    }
+    .card-icon {
+        width: 32px;
+        height: 32px;
+        background-color: #E6F2F9;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .card-icon i {
+        color: #2C5F7C;
+        font-size: 14px;
+    }
+    .card-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .cost-items {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .cost-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 0;
+        font-size: 11px;
+    }
+    .cost-label {
+        color: #5A6C7D;
+        font-weight: 500;
+    }
+    .cost-value {
+        color: #0F2940;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .total-row {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 2px solid #4A90C8;
+        font-size: 13px;
+    }
+    .tier-badges {
+        display: flex;
+        gap: 6px;
+        margin-top: 4px;
+    }
+    .tier-badge {
+        flex: 1;
+        background-color: #F8FAFB;
+        padding: 6px 8px;
+        border-radius: 6px;
+        text-align: center;
+        border: 2px solid #4A90C8;
+    }
+    .tier-name {
+        font-size: 10px;
+        font-weight: 700;
+        color: #2C5F7C;
+        margin-bottom: 2px;
+    }
+    .tier-rate {
+        font-size: 14px;
+        font-weight: 800;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .middle-section {
+        display: flex;
+        gap: 16px;
+    }
+    .scenario-card {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 14px 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        border-left: 5px solid #2C5F7C;
+    }
+    .scenario-card.positive {
+        border-left-color: #1B7A3E;
+    }
+    .scenario-card.negative {
+        border-left-color: #C53030;
+    }
+    .scenario-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+    .scenario-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .scenario-badge {
+        background-color: #E6F2F9;
+        color: #2C5F7C;
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 700;
+    }
+    .scenario-metrics {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 11px;
+    }
+    .metric-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .metric-label {
+        color: #5A6C7D;
+        font-weight: 500;
+    }
+    .metric-value {
+        color: #0F2940;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .profit-result {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 2px solid #E2E8F0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+    }
+    .profit-label {
+        font-weight: 700;
+        color: #2C5F7C;
+    }
+    .profit-value {
+        font-size: 16px;
+        font-weight: 800;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .profit-value.positive {
+        color: #1B7A3E;
+    }
+    .profit-value.negative {
+        color: #C53030;
+    }
+    .bottom-section {
+        display: flex;
+        gap: 16px;
+        flex: 1;
+    }
+    .breakeven-card {
+        width: 280px;
+        background-color: #0F2940;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .breakeven-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #B8D4E8;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .breakeven-value {
+        font-size: 48px;
+        font-weight: 800;
+        color: #FFFFFF;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 4px;
+    }
+    .breakeven-subtext {
+        font-size: 12px;
+        color: #8FB5D0;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+    .chart-card {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+    }
+    .chart-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 8px;
+    }
+    .chart-container {
+        flex: 1;
+        position: relative;
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header">
+<p class="title">Financial Analysis &amp; Profitability Model</p>
+</div>
+<div class="content-wrapper">
+<div class="top-section">
+<div class="cost-card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-server"></i>
+</div>
+<p class="card-title">Fixed Monthly Costs</p>
+</div>
+<div class="cost-items">
+<div class="cost-item">
+<p class="cost-label">Tech Infrastructure</p>
+<p class="cost-value">690K</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">Personnel (5 staff)</p>
+<p class="cost-value">1,230K</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">Operations</p>
+<p class="cost-value">225K</p>
+</div>
+<div class="cost-item total-row">
+<p class="cost-label">Total Fixed Costs</p>
+<p class="cost-value">MMK 2,145K</p>
+</div>
+</div>
+</div>
+<div class="cost-card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-box"></i>
+</div>
+<p class="card-title">Variable Costs Per Order</p>
+</div>
+<div class="cost-items">
+<div class="cost-item">
+<p class="cost-label">Delivery (Yangon)</p>
+<p class="cost-value">2,250</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">Delivery (Nationwide)</p>
+<p class="cost-value">3,750</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">Packaging</p>
+<p class="cost-value">450</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">Payment Processing</p>
+<p class="cost-value">2.9% + 450</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">CS Allocation</p>
+<p class="cost-value">300</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">Insurance (high-value)</p>
+<p class="cost-value">1.5%</p>
+</div>
+</div>
+</div>
+<div class="cost-card">
+<div class="card-header">
+<div class="card-icon">
+<i class="fas fa-percentage"></i>
+</div>
+<p class="card-title">Commission Structure</p>
+</div>
+<div class="cost-items">
+<div class="cost-item">
+<p class="cost-label">Pilot Phase (M1-4)</p>
+<p class="cost-value">8%</p>
+</div>
+<div class="cost-item">
+<p class="cost-label">Standard (M5-8)</p>
+<p class="cost-value">12%</p>
+</div>
+<div class="cost-item" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #E2E8F0;">
+<p class="cost-label" style="font-weight: 700;">Performance Tiers:</p>
+</div>
+<div class="tier-badges">
+<div class="tier-badge">
+<p class="tier-name">Bronze</p>
+<p class="tier-rate">12%</p>
+</div>
+<div class="tier-badge">
+<p class="tier-name">Silver</p>
+<p class="tier-rate">10%</p>
+</div>
+<div class="tier-badge">
+<p class="tier-name">Gold</p>
+<p class="tier-rate">8%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="middle-section">
+<div class="scenario-card positive">
+<div class="scenario-header">
+<p class="scenario-title">Scenario 1: Premium Watch Seller</p>
+<div class="scenario-badge">
+<p>PROFITABLE</p>
+</div>
+</div>
+<div class="scenario-metrics">
+<div class="metric-row">
+<p class="metric-label">AOV:</p>
+<p class="metric-value">MMK 225,000</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Monthly Orders:</p>
+<p class="metric-value">25</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Gross Revenue:</p>
+<p class="metric-value">MMK 5,625,000</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Commission (12%):</p>
+<p class="metric-value">MMK 675,000</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Variable Costs:</p>
+<p class="metric-value">MMK 363,750</p>
+</div>
+<div class="profit-result">
+<p class="profit-label">Platform Gross Profit:</p>
+<p class="profit-value positive">+MMK 311,250</p>
+</div>
+</div>
+</div>
+<div class="scenario-card negative">
+<div class="scenario-header">
+<p class="scenario-title">Scenario 2: Electronics Accessories</p>
+<div class="scenario-badge">
+<p>UNPROFITABLE</p>
+</div>
+</div>
+<div class="scenario-metrics">
+<div class="metric-row">
+<p class="metric-label">AOV:</p>
+<p class="metric-value">MMK 37,500</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Monthly Orders:</p>
+<p class="metric-value">100</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Gross Revenue:</p>
+<p class="metric-value">MMK 3,750,000</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Commission (10%):</p>
+<p class="metric-value">MMK 375,000</p>
+</div>
+<div class="metric-row">
+<p class="metric-label">Variable Costs:</p>
+<p class="metric-value">MMK 645,000</p>
+</div>
+<div class="profit-result">
+<p class="profit-label">Platform Gross Profit:</p>
+<p class="profit-value negative">-MMK 270,000</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bottom-section">
+<div class="breakeven-card">
+<p class="breakeven-label">Break-Even Point</p>
+<p class="breakeven-value">215</p>
+<p class="breakeven-subtext">orders per month<br/>@ MMK 10K avg profit</p>
+</div>
+<div class="chart-card">
+<p class="chart-title">12-Month Revenue Projection: Path to Profitability</p>
+<div class="chart-container">
+<canvas id="revenueChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12'],
+            datasets: [
+                {
+                    label: 'Monthly Net Profit (MMK)',
+                    data: [-2043000, -2010000, -2000000, -1975000, -1173000, -890000, -450000, -201000, 195000, 620000, 980000, 1335000],
+                    borderColor: '#4A90C8',
+                    backgroundColor: 'rgba(74, 144, 200, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#FFFFFF',
+                    pointBorderColor: '#4A90C8',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 7
+                },
+                {
+                    label: 'Break-Even Line',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    borderColor: '#C53030',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    fill: false,
+                    pointRadius: 0
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        font: {
+                            family: 'Inter',
+                            size: 11
+                        },
+                        padding: 10,
+                        usePointStyle: true
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(15, 41, 64, 0.95)',
+                    titleFont: {
+                        family: 'Montserrat',
+                        size: 12,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        family: 'Inter',
+                        size: 11
+                    },
+                    padding: 10,
+                    callbacks: {
+                        label: function(context) {
+                            if (context.datasetIndex === 0) {
+                                let value = context.parsed.y;
+                                return 'Net Profit: MMK ' + value.toLocaleString();
+                            }
+                            return null;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    ticks: {
+                        font: {
+                            family: 'Inter',
+                            size: 10
+                        },
+                        callback: function(value) {
+                            return 'MMK ' + (value / 1000000).toFixed(1) + 'M';
+                        }
+                    },
+                    grid: {
+                        color: '#E2E8F0'
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            family: 'Inter',
+                            size: 10
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

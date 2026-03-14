@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KHIT ZAY Multi-Vendor Marketplace Expansion Strategy</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+        .tab-navigation {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafb 100%);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .tabs-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #4A90C8 #f1f1f1;
+        }
+        .tabs-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .tabs-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: #4A90C8;
+            border-radius: 3px;
+        }
+        .tab-button {
+            padding: 12px 20px;
+            border: none;
+            background: linear-gradient(145deg, #f8fafb 0%, #e2e8f0 100%);
+            color: #0F2940;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74,144,200,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .tab-button:hover::before {
+            left: 100%;
+        }
+        .tab-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px -8px rgba(74,144,200,0.4);
+            background: linear-gradient(145deg, #4A90C8 0%, #3a7bc8 100%);
+            color: white;
+        }
+        .tab-button.active {
+            background: linear-gradient(145deg, #4A90C8 0%, #2C5F7C 100%);
+            color: white;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 30px -10px rgba(74,144,200,0.5);
+        }
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffffff, #f0f0f0);
+            border-radius: 2px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .tab-button i {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        .tab-button:hover i {
+            transform: rotate(10deg) scale(1.1);
+        }
+        .content-frame {
+            flex: 1;
+            width: 100%;
+            height: 720px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafb 100%);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -15px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .content-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4A90C8, #2C5F7C, #4A90C8);
+            background-size: 200% 100%;
+            animation: shimmerTop 3s linear infinite;
+        }
+        @keyframes shimmerTop {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            min-height: 720px;
+            max-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 720px;
+            max-height: 720px;
+            border: none;
+            border-radius: 16px;
+            transform: scale(1);
+            transform-origin: top left;
+        }
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 100;
+        }
+        .loading-spinner.active {
+            display: block;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(74,144,200,0.1);
+            border-top: 4px solid #4A90C8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 20px rgba(74,144,200,0.3);
+        }
+        .spinner::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(74,144,200,0.2);
+            border-top: 2px solid #2C5F7C;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite reverse;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-info {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(145deg, rgba(74,144,200,0.15), rgba(74,144,200,0.05));
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 12px;
+            color: #4A90C8;
+            font-weight: 600;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(74,144,200,0.2);
+            box-shadow: 0 4px 15px -5px rgba(74,144,200,0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .tab-info::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 8px;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: #4A90C8;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .home-content {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0F2940;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+            z-index: 2;
+        }
+        .bg-accent-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-color: #1E4D6B;
+            border-radius: 50%;
+            top: -200px;
+            right: -150px;
+            opacity: 0.4;
+            z-index: 1;
+        }
+        .bg-accent-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-color: #2C5F7C;
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .title-main {
+            font-size: 58px;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: #B8D4E8;
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 900px;
+        }
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .brand-logo {
+            background-color: #FFFFFF;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #0F2940;
+            letter-spacing: 1px;
+        }
+        .divider {
+            width: 2px;
+            height: 40px;
+            background-color: #4A7C9E;
+        }
+        .footer-info {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+        .date-info {
+            font-size: 16px;
+            font-weight: 500;
+            color: #8FB5D0;
+        }
+        .position-tag {
+            background-color: #2C5F7C;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .accent-line {
+            width: 120px;
+            height: 4px;
+            background-color: #4A90C8;
+            margin: 0 auto 32px;
+        }
+        .navigation-hint {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 14px;
+            padding: 12px 20px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .navigation-hint:hover {
+            background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
+            transform: translateY(-1px);
+        }
+        .keyboard-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 8px;
+            padding: 4px 8px;
+            background: rgba(74,144,200,0.1);
+            border-radius: 6px;
+            font-size: 12px;
+            color: #4A90C8;
+            font-weight: 600;
+        }
+        .keyboard-hint i {
+            font-size: 10px;
+        }
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 10px;
+            }
+            .tabs-container {
+                flex-wrap: wrap;
+            }
+            .tab-button {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            .home-content {
+                width: 100%;
+                height: 500px;
+            }
+            .content-wrapper {
+                padding: 40px;
+            }
+            .title-main {
+                font-size: 36px;
+            }
+            .subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+        <div class="tabs-container">
+            <button class="tab-button active" onclick="openTab('home')" data-tab="home">
+                <i class="fas fa-home"></i>
+                Home
+            </button>
+            <button class="tab-button" onclick="openTab('Page2')" data-tab="Page2">
+                <i class="fas fa-file-alt"></i>
+                Page 2
+            </button>
+            <button class="tab-button" onclick="openTab('Page3')" data-tab="Page3">
+                <i class="fas fa-file-alt"></i>
+                Page 3
+            </button>
+            <button class="tab-button" onclick="openTab('Page4')" data-tab="Page4">
+                <i class="fas fa-file-alt"></i>
+                Page 4
+            </button>
+            <button class="tab-button" onclick="openTab('Page5')" data-tab="Page5">
+                <i class="fas fa-file-alt"></i>
+                Page 5
+            </button>
+            <button class="tab-button" onclick="openTab('Page6')" data-tab="Page6">
+                <i class="fas fa-file-alt"></i>
+                Page 6
+            </button>
+            <button class="tab-button" onclick="openTab('Page7')" data-tab="Page7">
+                <i class="fas fa-file-alt"></i>
+                Page 7
+            </button>
+            <button class="tab-button" onclick="openTab('Page8')" data-tab="Page8">
+                <i class="fas fa-file-alt"></i>
+                Page 8
+            </button>
+            <button class="tab-button" onclick="openTab('Page9')" data-tab="Page9">
+                <i class="fas fa-file-alt"></i>
+                Page 9
+            </button>
+            <button class="tab-button" onclick="openTab('Page10')" data-tab="Page10">
+                <i class="fas fa-file-alt"></i>
+                Page 10
+            </button>
+        </div>
+    </div>
+
+    <!-- Content Frame -->
+    <div class="content-frame">
+        <div class="tab-info" id="tabInfo">Home</div>
+        <div class="iframe-container" id="contentContainer">
+            <!-- Home Content -->
+            <div id="home-content" class="home-content">
+                <div class="bg-accent-1"></div>
+                <div class="bg-accent-2"></div>
+                <div class="content-wrapper">
+                    <div class="accent-line"></div>
+                    <p class="title-main">
+                        KHIT ZAY Multi-Vendor<br>Marketplace Expansion Strategy
+                    </p>
+                    <p class="subtitle">
+                        Transforming from existing-vendor to Myanmar's premier multi-vendor marketplace
+                    </p>
+                    <div class="brand-section">
+                        <div class="brand-logo">
+                            <p>KHIT ZAY</p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="brand-logo">
+                            <p>BLAZON MM GROUP</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <div class="date-info">
+                        <p>Presented: 09 March 2026</p>
+                    </div>
+                    <div class="position-tag">
+                        <p>Premium Multi-Vendor Marketplace • 17+ International Brands • 1M+ Active Users</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation-hint">
+        <span>Click on any tab to navigate to different pages</span>
+        <span class="keyboard-hint"><i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> Use arrow keys to navigate</span>
+        <span class="keyboard-hint"><i class="fas fa-hand-point-left"></i> <i class="fas fa-hand-point-right"></i> Swipe on mobile</span>
+    </div>
+</div>
+
+<script>
+    let currentTab = 'home';
+    
+    function openTab(tabName) {
+        // Remove active class from all tabs
+        const allTabs = document.querySelectorAll('.tab-button');
+        allTabs.forEach(tab => tab.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+        
+        // Update tab info with animation
+        const tabInfo = document.getElementById('tabInfo');
+        tabInfo.style.transform = 'scale(0.8)';
+        tabInfo.style.opacity = '0';
+        
+        setTimeout(() => {
+            tabInfo.textContent = tabName === 'home' ? 'Home' : `Page ${tabName.replace('Page', '')}`;
+            tabInfo.style.transform = 'scale(1)';
+            tabInfo.style.opacity = '1';
+        }, 200);
+        
+        // Handle content display
+        const contentContainer = document.getElementById('contentContainer');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const homeContent = document.getElementById('home-content');
+        
+        if (tabName === 'home') {
+            // Fade out current content
+            contentContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Show home content
+                homeContent.style.display = 'flex';
+                homeContent.classList.add('fade-in');
+                loadingSpinner.classList.remove('active');
+                
+                // Remove any existing iframe
+                const existingIframe = contentContainer.querySelector('iframe');
+                if (existingIframe) {
+                    existingIframe.remove();
+                }
+                
+                // Fade in
+                contentContainer.style.opacity = '1';
+            }, 300);
+        } else {
+            // Fade out current content
+            contentContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Hide home content
+                homeContent.style.display = 'none';
+                
+                // Show loading spinner
+                loadingSpinner.classList.add('active');
+                
+                // Remove any existing iframe
+                const existingIframe = contentContainer.querySelector('iframe');
+                if (existingIframe) {
+                    existingIframe.remove();
+                }
+                
+                // Create and load new iframe
+                const iframe = document.createElement('iframe');
+                iframe.src = `${tabName}.html`;
+                iframe.style.width = '1280px';
+                iframe.style.height = '720px';
+                iframe.style.border = 'none';
+                iframe.style.borderRadius = '16px';
+                iframe.style.transform = 'scale(0.9)';
+                iframe.style.transformOrigin = 'top left';
+                iframe.style.position = 'absolute';
+                iframe.style.top = '0';
+                iframe.style.left = '50%';
+                iframe.style.marginLeft = '-576px'; // 1280 * 0.9 / 2
+                iframe.style.opacity = '0';
+                
+                iframe.onload = function() {
+                    loadingSpinner.classList.remove('active');
+                    
+                    // Fade in iframe
+                    setTimeout(() => {
+                        iframe.style.opacity = '1';
+                        iframe.style.transition = 'opacity 0.5s ease';
+                    }, 100);
+                    
+                    // Try to adjust scaling based on content
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        const body = iframeDoc.body;
+                        const contentHeight = body.scrollHeight;
+                        
+                        // Adjust scaling if content is too tall
+                        if (contentHeight > 720) {
+                            const scale = 720 / contentHeight;
+                            iframe.style.transform = `scale(${Math.min(scale, 0.9)})`;
+                            iframe.style.marginLeft = `${-1280 * Math.min(scale, 0.9) / 2}px`;
+                        }
+                    } catch (e) {
+                        // Cross-origin restrictions, use default scaling
+                        console.log('Cannot access iframe content due to cross-origin restrictions');
+                    }
+                };
+                
+                iframe.onerror = function() {
+                    loadingSpinner.classList.remove('active');
+                    contentContainer.innerHTML = `
+                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 720px; text-align: center; padding: 40px;" class="fade-in">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: #f59e0b; margin-bottom: 16px;"></i>
+                            <h3 style="color: #0F2940; margin-bottom: 8px;">Page Not Found</h3>
+                            <p style="color: #64748b; margin-bottom: 16px;">The page "${tabName}.html" could not be loaded.</p>
+                            <button onclick="openTab('home')" style="padding: 8px 16px; background: #4A90C8; color: white; border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
+                                <i class="fas fa-home"></i> Back to Home
+                            </button>
+                        </div>
+                    `;
+                    contentContainer.style.opacity = '1';
+                };
+                
+                contentContainer.appendChild(iframe);
+                
+                // Fade in container
+                setTimeout(() => {
+                    contentContainer.style.opacity = '1';
+                }, 100);
+            }, 300);
+        }
+        
+        currentTab = tabName;
+        
+        // Add smooth scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Handle keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        const tabs = ['home', 'Page2', 'Page3', 'Page4', 'Page5', 'Page6', 'Page7', 'Page8', 'Page9', 'Page10'];
+        const currentIndex = tabs.indexOf(currentTab);
+        
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            openTab(tabs[currentIndex - 1]);
+        } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+            openTab(tabs[currentIndex + 1]);
+        }
+    });
+    
+    // Add touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    document.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const tabs = ['home', 'Page2', 'Page3', 'Page4', 'Page5', 'Page6', 'Page7', 'Page8', 'Page9', 'Page10'];
+        const currentIndex = tabs.indexOf(currentTab);
+        
+        if (touchEndX < touchStartX - 50 && currentIndex < tabs.length - 1) {
+            // Swipe left - next tab
+            openTab(tabs[currentIndex + 1]);
+        }
+        
+        if (touchEndX > touchStartX + 50 && currentIndex > 0) {
+            // Swipe right - previous tab
+            openTab(tabs[currentIndex - 1]);
+        }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set initial state
+        openTab('home');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Seller Persuasion Strategy</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+    .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #F8FAFB;
+        overflow: hidden;
+    }
+    .header {
+        padding: 40px 60px 20px 60px;
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #4A90C8;
+    }
+    .title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 60px 40px 60px;
+        gap: 24px;
+    }
+    .positioning-banner {
+        background-color: #0F2940;
+        padding: 20px 32px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        border-left: 6px solid #4A90C8;
+    }
+    .positioning-icon {
+        width: 60px;
+        height: 60px;
+        background-color: #2C5F7C;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .positioning-icon i {
+        font-size: 28px;
+        color: #FFFFFF;
+    }
+    .positioning-content {
+        flex: 1;
+    }
+    .positioning-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #B8D4E8;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .positioning-text {
+        font-size: 16px;
+        color: #FFFFFF;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+    .categories-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0F2940;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 4px;
+    }
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+    }
+    .category-card {
+        background-color: #FFFFFF;
+        padding: 20px 16px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        border-top: 4px solid #4A90C8;
+        transition: transform 0.2s;
+    }
+    .category-card:hover {
+        transform: translateY(-4px);
+    }
+    .category-icon {
+        width: 56px;
+        height: 56px;
+        background-color: #E6F2F9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+    .category-icon i {
+        font-size: 26px;
+        color: #2C5F7C;
+    }
+    .category-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #0F2940;
+        margin-bottom: 6px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .category-examples {
+        font-size: 11px;
+        color: #5A6C7D;
+        line-height: 1.4;
+    }
+    .value-props-section {
+        display: flex;
+        gap: 12px;
+    }
+    .value-prop-card {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 14px 18px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    }
+    .value-icon {
+        width: 36px;
+        height: 36px;
+        background-color: #E6F2F9;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .value-icon i {
+        font-size: 16px;
+        color: #4A90C8;
+    }
+    .value-text {
+        font-size: 12px;
+        color: #2D3748;
+        line-height: 1.4;
+        font-weight: 500;
+    }
+</style>
+</head>
+<body style="" data-new-gr-c-s-check-loaded="14.1275.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1275.0">
+<div class="slide-container">
+<div class="header">
+<p class="title">Seller Persuasion Strategy: Complement, Don't Compete</p>
+</div>
+<div class="content-wrapper">
+<div class="positioning-banner">
+<div class="positioning-icon">
+<i class="fas fa-puzzle-piece"></i>
+</div>
+<div class="positioning-content">
+<p class="positioning-label">Strategic Positioning</p>
+<p class="positioning-text">Avoid direct overlap with Adidas, Mango, Crocs, Bonia, Charles &amp; Keith, Pedro, The Face Shop. Focus on complementary categories that enhance the customer experience and fill product gaps.</p>
+</div>
+</div>
+<div class="categories-section">
+<p class="section-title">Target Product Categories (Yangon-Based Sellers)</p>
+<div class="categories-grid">
+<div class="category-card">
+<div class="category-icon">
+<i class="fas fa-clock"></i>
+</div>
+<p class="category-name">Watches &amp; Timepieces</p>
+<p class="category-examples">Casio, Seiko, Citizen, Fossil, premium local retailers</p>
+</div>
+<div class="category-card">
+<div class="category-icon">
+<i class="fas fa-spray-can"></i>
+</div>
+<p class="category-name">Authentic Fragrances</p>
+<p class="category-examples">Luxury &amp; niche perfumes above current beauty positioning</p>
+</div>
+<div class="category-card">
+<div class="category-icon">
+<i class="fas fa-headphones"></i>
+</div>
+<p class="category-name">Small Electronics &amp; Gadgets</p>
+<p class="category-examples">Earbuds, smartwatches, power banks, premium accessories (&lt;2kg)</p>
+</div>
+<div class="category-card">
+<div class="category-icon">
+<i class="fas fa-glasses"></i>
+</div>
+<p class="category-name">Fashion Accessories</p>
+<p class="category-examples">Sunglasses, belts, wallets, jewelry, scarves (non-competing)</p>
+</div>
+<div class="category-card">
+<div class="category-icon">
+<i class="fas fa-spa"></i>
+</div>
+<p class="category-name">Home &amp; Wellness</p>
+<p class="category-examples">Aromatherapy, candles, décor, wellness products</p>
+</div>
+</div>
+</div>
+<div class="value-props-section">
+<div class="value-prop-card">
+<div class="value-icon">
+<i class="fas fa-users"></i>
+</div>
+<p class="value-text">Immediate access to 1M+ active users</p>
+</div>
+<div class="value-prop-card">
+<div class="value-icon">
+<i class="fas fa-award"></i>
+</div>
+<p class="value-text">Brand halo from Blazon MM Group's 30-year reputation</p>
+</div>
+<div class="value-prop-card">
+<div class="value-icon">
+<i class="fas fa-box"></i>
+</div>
+<p class="value-text">Full operational support: packaging, delivery, customer service</p>
+</div>
+<div class="value-prop-card">
+<div class="value-icon">
+<i class="fas fa-bullhorn"></i>
+</div>
+<p class="value-text">Marketing reach via KHIT ZAY channels</p>
+</div>
+<div class="value-prop-card">
+<div class="value-icon">
+<i class="fas fa-handshake"></i>
+</div>
+<p class="value-text">Risk-free entry: commission-only model</p>
+</div>
+</div>
+</div>
+</div>
+
+<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></body></html>
