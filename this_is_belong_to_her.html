@@ -1567,9 +1567,9 @@ I LOVE YOU! ❤️
 </div>
 
 <script>
-// Gallery Data - Only from media_links.json (no duplicates)
+// Gallery Data - Updated with all photos from media_links.json
 const galleryData = [
-    // Cloudinary Images from media_links.json
+    // Original Cloudinary Images
     { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773450269/q7gnaalqucf36vrbisqb.jpg', caption: 'Memory 1 ☁️' },
     { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773450276/ytncs5hlemtlqg8sn5qz.jpg', caption: 'Memory 2 ☁️' },
     { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773450285/npizqruvfgym3veivkip.jpg', caption: 'Memory 3 ☁️' },
@@ -1602,7 +1602,25 @@ const galleryData = [
     { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773450570/t73cqrfrxqcogclqpe1i.jpg', caption: 'Memory 30 ☁️' },
     { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773450576/rfxb37sdum7hnsfdgwui.jpg', caption: 'Memory 31 ☁️' },
     { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773450638/qal34uqseikxkgddbppp.jpg', caption: 'Memory 32 ☁️' },
-    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773453651/wuolfv7dzd7lkjpwm7e4.jpg', caption: 'Latest Memory 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773453651/wuolfv7dzd7lkjpwm7e4.jpg', caption: 'Memory 33 ☁️' },
+    // New Photos from latest upload (Sat Mar 14 16:07:26 2026)
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481046/kww0vjzsvmyqi09docqk.jpg', caption: 'New Memory 34 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481053/nnes7ts345fecxkakg7s.jpg', caption: 'New Memory 35 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481059/mtec9hvpchkibnnpmqla.jpg', caption: 'New Memory 36 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481065/qhpwhk1nrs4qekrywlmk.jpg', caption: 'New Memory 37 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481071/b0lx8e6q1npwjxmijy6x.jpg', caption: 'New Memory 38 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481078/vyoduoxdc16j1qjtiwa1.jpg', caption: 'New Memory 39 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481084/ginxlchnvgkxrkl6csj6.jpg', caption: 'New Memory 40 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481157/ykz9ttxo1n8ooiyph0o5.jpg', caption: 'New Memory 41 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481167/bt3atadyvxztxdguqgvf.jpg', caption: 'New Memory 42 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481175/fqicdgcunnu8l625kqy7.jpg', caption: 'New Memory 43 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481182/wboapbkzdr6rexudryrk.jpg', caption: 'New Memory 44 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481192/phzoxaahghic1748csoh.jpg', caption: 'New Memory 45 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481200/qt4ycs1nff6m17obj9ol.jpg', caption: 'New Memory 46 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481207/rqrucbfgmkgel0cozvwv.jpg', caption: 'New Memory 47 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481215/v5ogbl2jr78dopmhumgq.jpg', caption: 'New Memory 48 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481224/i3vohpieaxccxskdic3e.jpg', caption: 'New Memory 49 💕' },
+    { type: 'image', src: 'https://res.cloudinary.com/dr0q4kzis/image/upload/v1773481233/dhv5jabjah8tcx8pv3nk.jpg', caption: 'New Memory 50 💕' },
     // Cloudinary Videos from media_links.json
     { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773450439/ur5n3brooxgtaknbngyy.mp4', caption: 'Video 1 🎬' },
     { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773450471/lh6mztllnmiflyppu4om.mp4', caption: 'Video 2 🎬' },
@@ -1610,7 +1628,10 @@ const galleryData = [
     { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773450587/idycsq9cdglcsijheak6.mp4', caption: 'Video 4 🎬' },
     { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773450596/fziqsyrp6cle4f1ntcgu.mp4', caption: 'Video 5 🎬' },
     { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773450613/va1gbmy3fwscxkb97n2w.mp4', caption: 'Video 6 🎬' },
-    { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773450630/jboltmbqtrwxfirgpa3z.mp4', caption: 'Video 7 🎬' }
+    { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773450630/jboltmbqtrwxfirgpa3z.mp4', caption: 'Video 7 🎬' },
+    // New Videos from latest upload
+    { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773481097/jgxwunjs7dtqi8get4ek.mp4', caption: 'New Video 8 🎬' },
+    { type: 'video', src: 'https://res.cloudinary.com/dr0q4kzis/video/upload/v1773481107/ubbicah1reyy61xbkq4a.mp4', caption: 'New Video 9 🎬' }
 ];
 
 let currentLightboxIndex = 0;
